@@ -2,9 +2,9 @@
 
 - A Tic Tac Toe game built using HTML, CSS and Javascript
 
-# Project Insights ?
+# Project Insights
 
 - Two player game, just like a usual tic tac toe game
-- Symbols : X and O
-- Winning Message : When a player wins it displays the winning message as <h4>X's Wins</h4> or <h4>O's wins</h4> and <h4>Draw</h4> for a draw
-- Restart functionality : After the game ends with a Win or Draw, players and restart the game without reloading the page
+- Symbols used are X and O
+- When a player wins it displays the winning message as "X's Wins" or "O's wins" and "Draw" for a draw
+- After the game ends with a Win or Draw, players can restart the game without reloading the page
