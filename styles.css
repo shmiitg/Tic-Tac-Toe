@@ -1,0 +1,180 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 500px), (max-height: 600px) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media (max-width: 280px), (max-height: 400px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+:root {
+  --shadow-color: #7baca7;
+  --background-color: #e0ebeb;
+  --main-color: #000000;
+  --cell-size: 6.25rem;
+  --cross-size: var(--cell-size);
+  --circle-size: calc(var(--cell-size) * 0.65);
+  --shape-width: calc(var(--cell-size) * 0.1);
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+h1 {
+  color: var(--main-color);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.8rem;
+  top: 7%;
+}
+
+@media (max-width: 200px), (max-height: 400px) {
+  h1 {
+    font-size: 2.4rem;
+  }
+}
+.container {
+  margin: auto;
+  margin-top: 50vh;
+  transform: translateY(-50%);
+  display: grid;
+  width: calc(var(--cell-size) * 3);
+  height: calc(var(--cell-size) * 3);
+  grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+  position: relative;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--main-color);
+}
+
+/* remove external borders */
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-top: none;
+}
+
+.cell:nth-child(3n) {
+  border-right: none;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9) {
+  border-bottom: none;
+}
+
+.cell:nth-child(3n-2) {
+  border-left: none;
+}
+
+/* cursor not allowed on already occupied cell */
+.cell.circle,
+.cell.cross {
+  cursor: not-allowed;
+}
+
+/* When we want circle */
+.cell.circle::before,
+.container.cross .cell:not(.circle):not(.cross):hover::before {
+  content: "";
+  background-color: var(--background-color);
+  height: var(--circle-size);
+  width: var(--circle-size);
+  border-radius: 50%;
+  box-shadow: 0 0 0 var(--shape-width) var(--shadow-color);
+}
+
+.cell.circle::before {
+  box-shadow: 0 0 0 var(--shape-width) var(--main-color);
+}
+
+/* When we cant cross */
+.cell.cross::before,
+.container.circle .cell:not(.circle):not(.cross):hover::before {
+  content: "";
+  position: absolute;
+  background-color: var(--shadow-color);
+  width: var(--shape-width);
+  height: var(--cross-size);
+  transform: rotate(45deg);
+}
+
+.cell.cross::after,
+.container.circle .cell:not(.circle):not(.cross):hover::after {
+  content: "";
+  position: absolute;
+  background-color: var(--shadow-color);
+  height: var(--shape-width);
+  width: var(--cross-size);
+  transform: rotate(45deg);
+}
+
+.cell.cross::before,
+.cell.cross::after {
+  background-color: var(--main-color);
+}
+
+.curr-turn {
+  position: absolute;
+  bottom: 12%;
+  font-size: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.winner {
+  margin: auto;
+  margin-top: 50vh;
+}
+
+.winner p {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.winner button {
+  position: absolute;
+  display: block;
+  background-color: whitesmoke;
+  border: 2px solid #706666;
+  border-radius: 5px;
+  font-size: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 30px;
+  transition: 0.5s ease;
+}
+
+.winner button:hover {
+  cursor: pointer;
+  border: 2px solid var(--main-color);
+}
+
+.hide {
+  display: none;
+}
